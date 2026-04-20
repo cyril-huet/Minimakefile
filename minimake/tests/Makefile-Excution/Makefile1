@@ -1,0 +1,4 @@
+all:
+	false
+	echo cela_ne_va_pas_safficher
+

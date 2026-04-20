@@ -1,0 +1,3 @@
+all:
+	A=42; echo avec point virgule $A
+

@@ -1,0 +1,2 @@
+echo avec | cat
+avec

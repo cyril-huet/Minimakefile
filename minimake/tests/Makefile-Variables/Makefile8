@@ -1,0 +1,5 @@
+X=world
+HELLO=hello $(X)
+all:
+	echo $(HELLO)
+

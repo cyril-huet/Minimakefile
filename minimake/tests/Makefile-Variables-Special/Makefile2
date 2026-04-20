@@ -1,0 +1,4 @@
+all: depandance
+	echo $<
+depandance
+

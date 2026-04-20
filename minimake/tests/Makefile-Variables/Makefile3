@@ -1,0 +1,5 @@
+VAR=FOO
+FOO=BAR
+all:
+	echo $(VAR) $(FOO)
+

@@ -1,0 +1,4 @@
+echo ok
+ok
+false
+minimake: *** Command failed. Stop.

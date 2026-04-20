@@ -1,0 +1,3 @@
+affiche pas
+echo affiche
+affiche

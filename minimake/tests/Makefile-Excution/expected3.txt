@@ -1,0 +1,4 @@
+echo premier
+premier
+echo deuxieme
+deuxieme

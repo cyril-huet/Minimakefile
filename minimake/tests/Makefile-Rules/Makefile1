@@ -1,0 +1,4 @@
+all: foo
+	echo all
+foo:
+	echo foo

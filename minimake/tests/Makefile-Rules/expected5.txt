@@ -1,0 +1,6 @@
+echo B
+B
+echo C
+C
+echo A
+A

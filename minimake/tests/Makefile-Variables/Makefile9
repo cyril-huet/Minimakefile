@@ -1,0 +1,5 @@
+X=FOO
+$(X)=42
+all:
+	echo $(FOO)
+

@@ -1,0 +1,5 @@
+all:
+	echo ok
+	false
+	echo ok pas
+

@@ -1,0 +1,6 @@
+FOO=bar
+BAR=$(FOO)
+FOO=baz
+all:
+	echo $(BAR)
+

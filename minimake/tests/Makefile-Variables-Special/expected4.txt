@@ -1,0 +1,2 @@
+echo foo a a b
+foo a a b
