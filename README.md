@@ -1,96 +1,107 @@
-# Minimake
+# MiniMake
 
-Minimake is a simplified implementation of the classic `make` tool from the Unix world, written in C.  
-The goal of this project is to understand how build systems work internally by parsing a Makefile and executing rules based on dependencies.
+MiniMake is a small `make`-like program written in C99.
 
-The program reads a Makefile, builds targets, executes commands, and avoids rebuilding files that are already up to date.
+The project is meant to understand the basic ideas behind a build tool:
+reading rules, expanding variables, following dependencies and executing
+commands.
 
-## Overview
-
-This project focuses on low-level C programming concepts such as:
-
-- file parsing
-- dependency resolution
-- process execution (`fork`, `exec`)
-- file timestamps (`stat`)
-- variable expansion
-- build automation logic
-
-The implementation is intentionally minimal and restricted, in order to emphasize correctness, clarity, and understanding of how `make` works under the hood.
+It is intentionally limited. It is an educational project, not a replacement
+for GNU Make.
 
 ## Features
 
-Minimake supports the following:
-
-- Rules:
-  - `target: dependencies`
-- Variables:
-  - `VAR=value`
-  - usage: `$(VAR)` / `${VAR}` / `$V`
-- Command execution via `/bin/sh -c`
-- Dependency checking (up-to-date logic)
-- Default target = first rule
-- Command logging
-- Stop on first error
-
-### Supported options
-
-- `-f file` — specify Makefile
-- `-h` — display help
-- `-p` — pretty-print parsed Makefile
-
-### Advanced features
-
-- Recursive variables
-- Environment variables
-- Special variables:
-  - `$@` → target name
-  - `$<` → first dependency
-  - `$^` → all dependencies
-- Phony targets (`.PHONY`)
-- Pattern rules (`%.o: %.c`)
-- Target deduplication
-
-## Constraints
-
-- No global variables
-- No `system`, `popen`, `getopt`
-- Only standard C library allowed
-- Code follows the C99 standard
-- Output must strictly match subject format
+- `target: dependency` rules;
+- variables with `VAR=value`;
+- variable use with `$(VAR)`, `${VAR}` and `$V`;
+- recursive variable expansion;
+- `$@`, `$<` and `$^` in commands;
+- dependency order;
+- simple timestamp checks;
+- `@` commands without command echo;
+- `-f`, `-p` and `-h` options;
+- a small shell test suite.
 
 ## Build
-
-Build the project using `make`:
 
 ```sh
 make
 ```
 
+The executable is named `minimake`.
+
 ## Usage
-### Run minimake:
+
+Use the first target in a Makefile:
+
 ```sh
 ./minimake
 ```
-### Specify a Makefile:
+
+Choose another file:
+
 ```sh
-./minimake -f Makefile
+./minimake -f tests/Makefile-Rules/Makefile1
 ```
-### Run specific targets:
+
+Choose a target explicitly:
+
 ```sh
-./minimake all clean
+./minimake -f Makefile all
+```
+
+Show the selected Makefile name:
+
+```sh
+./minimake -p
 ```
 
 ## Example
-```Makefile
-CC = gcc
 
-all: main
+```make
+CC = cc
 
-main: main.o
-	$(CC) -o main main.o
+all: hello
 
-main.o: main.c
-	$(CC) -c main.c
+hello:
+	echo hello
 ```
 
+## Project structure
+
+```text
+.
+├── Makefile
+├── src/
+│   ├── excecuter_commandes.c
+│   ├── lire_fichier.c
+│   ├── main.c
+│   ├── minimake.h
+│   ├── nettoyage.c
+│   ├── target.c
+│   └── variables.c
+└── tests/
+    ├── Makefile-Variables/
+    ├── Makefile-Rules/
+    ├── Makefile-Variables-Special/
+    ├── Makefile-Excution/
+    └── test.sh
+```
+
+## Tests
+
+```sh
+make check
+```
+
+The tests cover variable expansion, rules, dependencies, automatic variables,
+command execution and error handling.
+
+## Limitations
+
+MiniMake does not implement every feature of Make. In particular, it does not
+support pattern rules, parallel builds, `.PHONY`, included Makefiles or the
+complete GNU Make language.
+
+The code stays deliberately small so that each part can be read and understood
+by a student learning C and Unix programming.

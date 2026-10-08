@@ -1,0 +1,7 @@
+minimake
+*.o
+tests/Makefile-Variables/output*.txt
+tests/Makefile-Rules/output*.txt
+tests/Makefile-Variables-Special/output*.txt
+tests/Makefile-Excution/output*.txt
+.DS_Store

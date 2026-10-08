@@ -1,0 +1,2 @@
+false
+minimake: *** Command failed. Stop.
