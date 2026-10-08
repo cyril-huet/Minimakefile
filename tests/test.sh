@@ -86,3 +86,8 @@ echo ""
 echo "Test reussi : $reussi"
 echo "Test rate : $rate"
 echo "$((rate + reussi))"
+if [ "$rate" -ne 0 ]; then
+    exit 1
+fi
+
+exit 0
